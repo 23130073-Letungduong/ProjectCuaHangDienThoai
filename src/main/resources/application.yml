@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:3000}
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static/
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false

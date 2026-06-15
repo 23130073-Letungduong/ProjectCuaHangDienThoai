@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cửa hàng Điện Thoại</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="store-header">
+    <div class="header-main">
+      <button class="brand-button" data-tab="shop" aria-label="Trang chủ">
+        <span class="brand-mark">ĐT</span>
+        <span>
+          <strong>Cửa hàng Điện Thoại</strong>
+          <small>An tâm mua sắm</small>
+        </span>
+      </button>
+
+      <button class="catalog-button" data-role-tab="customer" data-tab="shop" hidden>
+        <span class="catalog-icon">▦</span> Danh mục
+      </button>
+
+      <label class="search-box" data-role-tab="customer" hidden>
+        <input id="productSearch" type="search" placeholder="Bạn cần tìm điện thoại nào?">
+        <span>⌕</span>
+      </label>
+
+      <div class="header-contact" data-role-tab="customer" hidden>
+        <span class="contact-icon">☎</span>
+        <span><small>Gọi mua hàng</small><strong>0967.29.29.29</strong></span>
+      </div>
+
+      <button class="cart-summary" data-role-tab="customer" data-tab="shop" hidden>
+        <span class="cart-icon">▣</span>
+        <span><small>Giỏ hàng</small><strong id="headerCartCount">0 sản phẩm</strong></span>
+      </button>
+
+      <nav class="account-nav">
+        <span id="sessionBadge" class="session-badge">Chưa đăng nhập.</span>
+        <button data-tab="auth" data-auth-only>Tài khoản</button>
+        <button data-tab="keys" data-role-tab="customer" hidden>Khóa bảo mật</button>
+        <button data-tab="orders" data-role-tab="customer" hidden>Đơn hàng</button>
+        <button data-tab="admin" data-role-tab="manager" hidden>Quản lý đơn</button>
+        <button id="logoutBtn" class="logout-button" hidden>Đăng xuất</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="auth" class="tab active auth-page">
+      <div class="auth-intro">
+        <span class="eyebrow">Mua sắm được bảo vệ</span>
+        <h1>Điện thoại chính hãng, đơn hàng được xác thực.</h1>
+        <p>Mỗi khách hàng sở hữu một cặp khóa riêng để ký và bảo vệ nội dung đơn hàng khỏi chỉnh sửa trái phép.</p>
+        <div class="trust-list">
+          <span>✓ Chữ ký điện tử RSA</span>
+          <span>✓ Kiểm tra toàn vẹn SHA-256</span>
+          <span>✓ Không lưu private key</span>
+        </div>
+      </div>
+
+      <div class="auth-workspace">
+        <section class="auth-form">
+          <div class="section-title">
+            <div><span class="eyebrow">Đã có tài khoản</span><h2>Đăng nhập</h2></div>
+          </div>
+          <div class="form-stack">
+            <label>Tên đăng nhập<input id="loginEmail" value="user" autocomplete="username"></label>
+            <label>Mật khẩu<input id="loginPassword" type="password" value="123456" autocomplete="current-password"></label>
+          </div>
+          <button id="loginBtn" class="primary-action">Đăng nhập</button>
+          <p class="login-note">Tài khoản: <strong>user</strong> hoặc <strong>admin</strong>. Mật khẩu: <strong>123456</strong>.</p>
+        </section>
+
+        <section class="auth-form">
+          <div class="section-title">
+            <div><span class="eyebrow">Khách hàng mới</span><h2>Tạo tài khoản</h2></div>
+          </div>
+          <div class="form-grid">
+            <label>Họ tên<input id="registerName" value="Lê Khách Mới"></label>
+            <label>Email<input id="registerEmail" value="new@example.com" autocomplete="email"></label>
+            <label>Mật khẩu<input id="registerPassword" type="password" value="123456" autocomplete="new-password"></label>
+            <label>Điện thoại<input id="registerPhone" value="0987654321"></label>
+            <label class="wide">Địa chỉ<input id="registerAddress" value="1 Võ Văn Ngân, Thủ Đức, TP.HCM"></label>
+          </div>
+          <button id="registerBtn" class="primary-action">Tạo tài khoản</button>
+        </section>
+      </div>
+    </section>
+
+    <section id="shop" class="tab store-page">
+      <div class="breadcrumb">Trang chủ <span>›</span> Điện thoại</div>
+
+      <div class="brand-strip" id="brandFilters">
+        <button class="active" data-brand="ALL">Tất cả</button>
+        <button data-brand="Apple">iPhone</button>
+        <button data-brand="Samsung">SAMSUNG</button>
+        <button data-brand="Xiaomi">XIAOMI</button>
+        <button data-brand="OPPO">OPPO</button>
+        <button data-brand="Google">Google</button>
+      </div>
+
+      <div class="catalog-heading">
+        <div>
+          <span class="eyebrow">Giá tốt hôm nay</span>
+          <h1>Điện thoại nổi bật</h1>
+        </div>
+        <div class="promo">
+          <label><input type="checkbox" value="ATBM10" class="promoCode" checked> Giảm 10%</label>
+          <label><input type="checkbox" value="FREESHIP" class="promoCode"> Miễn phí giao hàng</label>
+        </div>
+      </div>
+
+      <div class="shop-layout">
+        <section>
+          <div id="products" class="product-grid"></div>
+        </section>
+
+        <aside class="checkout-panel">
+          <div class="checkout-title">
+            <div>
+              <span class="eyebrow">Đặt hàng an toàn</span>
+              <h2>Thông tin giao hàng</h2>
+            </div>
+            <span class="secure-badge">SHA-256</span>
+          </div>
+          <div class="form-stack compact">
+            <label>Họ tên<input id="buyerName" value="Nguyễn Văn A"></label>
+            <label>Email<input id="buyerEmail" value="user@example.com"></label>
+            <label>Điện thoại<input id="buyerPhone" value="0909123456"></label>
+            <label>Địa chỉ<textarea id="buyerAddress">12 Nguyễn Văn Bảo, Gò Vấp, TP.HCM</textarea></label>
+          </div>
+          <div class="checkout-security">
+            <strong>Đơn hàng được bảo vệ</strong>
+            <p>Sản phẩm, giá, khuyến mãi và thông tin người mua sẽ được băm trước khi ký.</p>
+          </div>
+          <div class="checkout-total">
+            <span>Tạm tính</span>
+            <strong id="cartTotal">0 ₫</strong>
+          </div>
+          <button id="createOrderBtn" class="primary-action">Tạo đơn hàng</button>
+          <p class="signed-user" id="currentUserText">Đăng nhập để tạo đơn hàng.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="keys" class="tab workspace-page">
+      <div class="workspace-heading">
+        <div><span class="eyebrow">Bảo mật tài khoản</span><h1>Quản lý khóa điện tử</h1></div>
+        <p>Public key được lưu trên hệ thống. Private key chỉ xuất hiện trên thiết bị của bạn.</p>
+      </div>
+
+      <div class="workspace-grid">
+        <section class="tool-panel">
+          <div class="tool-icon">K</div>
+          <h2>Yêu cầu cấp khóa</h2>
+          <p>Gửi yêu cầu cho admin. Sau khi được duyệt, trình duyệt mới tạo khóa RSA 2048-bit; private key chỉ được hiển thị một lần trên thiết bị này.</p>
+          <div id="keyRequestStatus" class="request-status">Chưa có yêu cầu cấp khóa.</div>
+          <div class="action-row">
+            <button id="requestKeyBtn" class="primary-action">Gửi yêu cầu cấp khóa</button>
+            <button id="generateKeyBtn" class="primary-action" disabled>Tạo khóa sau khi duyệt</button>
+            <button id="downloadPrivateBtn" class="secondary-action" disabled>Tải private key</button>
+            <a id="emailPrivateLink" class="secondary-action disabled" href="#">Gửi qua email</a>
+          </div>
+          <textarea id="privateKeyBox" class="key-output" readonly placeholder="Private key PEM sẽ hiển thị tại đây."></textarea>
+        </section>
+
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Đã đăng ký</span><h2>Public key của bạn</h2></div>
+          </div>
+          <div id="keyList" class="record-list"></div>
+        </section>
+      </div>
+
+      <div class="workspace-grid crypto-tool-layout">
+        <section class="tool-panel">
+          <div class="tool-icon accent">M</div>
+          <h2>Tool mã hóa AES-CBC</h2>
+          <p>Mã hóa nội dung nhạy cảm bằng khóa đối xứng, IV ngẫu nhiên và padding PKCS5/PKCS7 theo nội dung slide mode/padding.</p>
+          <div class="form-stack compact">
+            <label>Nội dung cần mã hóa<textarea id="encryptPlainText" placeholder="Ví dụ: dán private key hoặc ghi chú cần bảo vệ."></textarea></label>
+            <label>Mật khẩu mã hóa<input id="encryptPassword" type="password" value="123456"></label>
+          </div>
+          <div class="action-row">
+            <button id="encryptBtn" class="primary-action">Mã hóa</button>
+            <button id="decryptBtn" class="secondary-action">Giải mã</button>
+          </div>
+        </section>
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Confidentiality</span><h2>Kết quả mã hóa</h2></div>
+          </div>
+          <div class="form-stack compact">
+            <label>Salt<input id="cryptoSalt" readonly></label>
+            <label>IV<input id="cryptoIv" readonly></label>
+            <label>Ciphertext<textarea id="cryptoCiphertext" class="key-output" placeholder="Ciphertext Base64 sẽ hiển thị tại đây."></textarea></label>
+            <label>Plaintext sau giải mã<textarea id="cryptoPlaintextResult" readonly></textarea></label>
+          </div>
+          <p class="hint">Tool này chạy trên trình duyệt; nội dung không cần gửi lên server.</p>
+        </section>
+      </div>
+    </section>
+
+    <section id="orders" class="tab workspace-page">
+      <div class="workspace-heading">
+        <div><span class="eyebrow">Chữ ký điện tử</span><h1>Đơn hàng của tôi</h1></div>
+        <p>Ký mã băm đơn hàng bằng private key trước khi gửi cho quản trị viên duyệt.</p>
+      </div>
+
+      <div class="workspace-grid orders-layout">
+        <section class="tool-panel signing-tool">
+          <div class="tool-icon accent">✓</div>
+          <h2>Tool ký đơn hàng</h2>
+          <p>Dán private key đúng với public key đang hoạt động. Private key không được gửi lên server.</p>
+          <label>Private key PEM<textarea id="signPrivateKey" class="key-output" placeholder="Dán private key của bạn vào đây."></textarea></label>
+        </section>
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Lịch sử mua hàng</span><h2>Danh sách đơn</h2></div>
+          </div>
+          <div id="userOrders" class="record-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="admin" class="tab admin-page">
+      <div class="workspace-heading">
+        <div><span class="eyebrow">Trung tâm vận hành</span><h1>Quản lý đơn hàng</h1></div>
+        <p>Kiểm tra chữ ký, phát hiện chỉnh sửa và quản lý vòng đời public key của khách hàng.</p>
+      </div>
+
+      <div class="admin-stats">
+        <article><span>Tổng đơn hàng</span><strong id="statOrders">0</strong></article>
+        <article><span>Chờ xử lý</span><strong id="statPending">0</strong></article>
+        <article><span>Cảnh báo</span><strong id="statAlerts">0</strong></article>
+        <article><span>Khóa đã mất</span><strong id="statLostKeys">0</strong></article>
+      </div>
+
+      <div class="admin-grid">
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Theo dõi rủi ro</span><h2>Cảnh báo bảo mật</h2></div>
+          </div>
+          <div id="alerts" class="record-list"></div>
+        </section>
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Chờ phê duyệt</span><h2>Yêu cầu cấp khóa</h2></div>
+          </div>
+          <textarea id="adminPrivateKeyBox" class="key-output" readonly placeholder="Private key do admin cấp chỉ hiển thị một lần tại đây."></textarea>
+          <div id="keyRequests" class="record-list"></div>
+        </section>
+        <section class="list-panel">
+          <div class="section-title">
+            <div><span class="eyebrow">Vòng đời khóa</span><h2>Public key khách hàng</h2></div>
+          </div>
+          <div id="lostKeyList" class="record-list"></div>
+        </section>
+      </div>
+
+      <section class="orders-management">
+        <div class="section-title">
+          <div><span class="eyebrow">Xác minh và phê duyệt</span><h2>Tất cả đơn hàng</h2></div>
+        </div>
+        <div id="adminOrders" class="order-table"></div>
+      </section>
+    </section>
+  </main>
+
+  <template id="productTemplate">
+    <article class="product-card">
+      <div class="product-badges">
+        <span class="official">Chính hãng</span>
+        <span class="discount"></span>
+      </div>
+      <div class="product-image-wrap"><img alt="" loading="lazy"></div>
+      <span class="brand"></span>
+      <h3></h3>
+      <p class="spec"></p>
+      <div class="price-row">
+        <p class="price"></p>
+        <p class="old-price"></p>
+      </div>
+      <div class="installment">Trả góp 0% · Bảo hành 12 tháng</div>
+      <div class="quantity-control">
+        <span>Số lượng</span>
+        <input type="number" min="0" max="20" value="0">
+      </div>
+    </article>
+  </template>
+
+  <script src="/tools/KeyTool.js"></script>
+  <script src="/tools/EncryptionTool.js"></script>
+  <script src="/tools/SignatureTool.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

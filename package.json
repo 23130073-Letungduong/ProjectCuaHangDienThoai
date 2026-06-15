@@ -1,0 +1,24 @@
+{
+  "name": "cuahangdienthoai",
+  "version": "1.0.0",
+  "description": "Cửa hàng Điện Thoại dùng Java Spring Boot, SHA-256 và chữ ký số RSA.",
+  "main": "target/cuahangdienthoai-1.0.0.jar",
+  "scripts": {
+    "start": "mvn spring-boot:run",
+    "build": "mvn -q package",
+    "seed": "mvn -q -DskipTests compile exec:java \"-Dexec.mainClass=vn.edu.hcmuaf.fit.cuahangdienthoai.seed.SeedApplication\"",
+    "test:unit": "mvn -q test",
+    "test": "npm run test:unit && node scripts/test.js",
+    "screenshot": "node scripts/screenshot.js"
+  },
+  "keywords": [
+    "atbm",
+    "digital-signature",
+    "phone-shop"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}
